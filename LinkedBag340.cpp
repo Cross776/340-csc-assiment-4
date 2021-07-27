@@ -37,7 +37,7 @@ template<typename ItemType> // this is for B#3
     return count; }
 
 
-// this is for B#6 which I will move to the end later
+// this is for B#8 which I will move to the end later
 template<typename ItemType>
  ItemType LinkedBag<ItemType>::removeRandom340() {
   int random_num{};
@@ -52,7 +52,7 @@ template<typename ItemType>
     int position = random_num; 	// random number
       for (int i{ 0 }; i < (position - 2); i++) {
         temp1 = temp1->getNext(); }
-        Node<ItemType>* temp2 = temp1->getNext();	// nth Node
+        Node<ItemType>* temp2 = temp1->getNext();
 		item = temp2->getItem();
 		remove(item);
 		return item; }
@@ -72,4 +72,21 @@ template<typename ItemType> //helper
 		} else {
 		return 1 + getCurrentSize340RecursiveHelper(temp->getNext());	} }
 
-//this is for B#5
+//this is for B#6
+template<typename ItemType> 
+	int LinkedBag<ItemType>::getFrequencyOf340Recursive(const ItemType& anEntry) const {
+		Node<ItemType> *temp = headPtr;	
+	return getFrequencyOf340RecursiveHelper(temp, anEntry); }
+template<typename ItemType> 
+	int LinkedBag<ItemType>::getFrequencyOf340RecursiveHelper(Node<ItemType>* temp, const ItemType& anEntry) const {
+		if (temp == nullptr) {	
+			return 0; } 
+	
+	if(temp->getItem() == anEntry) {
+		return  1 + getFrequencyOf340RecursiveHelper(temp->getNext(), anEntry);
+	} else {
+		return getFrequencyOf340RecursiveHelper(temp->getNext(), anEntry); } } 
+
+
+
+// YOu are missing 5&7
