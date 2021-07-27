@@ -58,3 +58,18 @@ template<typename ItemType>
 		return item; }
 
 // this is for B#4
+template<typename ItemType>
+	int LinkedBag<ItemType>::getCurrentSize340Recursive() const {
+		Node<ItemType> *temp = headPtr;		
+	return getCurrentSize340RecursiveHelper(temp); } 
+
+template<typename ItemType> //helper
+	int LinkedBag<ItemType>::getCurrentSize340RecursiveHelper(Node<ItemType>* temp) const {
+		int count{0};
+	
+		if (temp == nullptr) {	
+		return count;
+		} else {
+		return 1 + getCurrentSize340RecursiveHelper(temp->getNext());	} }
+
+//this is for B#5
