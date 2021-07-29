@@ -37,6 +37,68 @@ template<typename ItemType> // this is for B#3
     return count; }
 
 
+
+// this is for B#4
+template<typename ItemType>
+	int LinkedBag<ItemType>::getCurrentSize340Recursive() const {
+		Node<ItemType> *temp = headPtr;		
+	return getCurrentSize340RecursiveHelper(temp); } 
+
+template<typename ItemType> //helper
+	int LinkedBag<ItemType>::getCurrentSize340RecursiveHelper(Node<ItemType>* temp) const {
+		int count{0};
+	
+		if (temp == nullptr) {	
+		return count;
+		} else {
+		return 1 + getCurrentSize340RecursiveHelper(temp->getNext());	} }
+
+// this is for B#5
+template<typename ItemType>
+	int LinkedBag<ItemType>::getCurrentSize340Recursive() const {
+		Node<ItemType> *temp = headPtr;		
+	return getCurrentSize340RecursiveNoHelper(temp); } 
+
+template<typename ItemType> //helper
+	int LinkedBag<ItemType>::getCurrentSize340RecursiveNoHelper(Node<ItemType>* temp) const {
+		int count{0};
+	
+		if (temp == nullptr) {	
+		return count;
+		} else {
+		return 1 + getCurrentSize340RecursiveNoHelper(temp->getNext());	} }
+
+//this is for B#6
+template<typename ItemType> 
+	int LinkedBag<ItemType>::getFrequencyOf340Recursive(const ItemType& anEntry) const {
+		Node<ItemType> *temp = headPtr;	
+	return getFrequencyOf340RecursiveHelper(temp, anEntry); }
+template<typename ItemType> 
+	int LinkedBag<ItemType>::getFrequencyOf340RecursiveHelper(Node<ItemType>* temp, const ItemType& anEntry) const {
+		if (temp == nullptr) {	
+			return 0; } 
+	
+	if(temp->getItem() == anEntry) {
+		return  1 + getFrequencyOf340RecursiveHelper(temp->getNext(), anEntry);
+	} else {
+		return getFrequencyOf340RecursiveHelper(temp->getNext(), anEntry); } } 
+
+//this is for B#7
+template<typename ItemType> 
+	int LinkedBag<ItemType>::getFrequencyOf340Recursive(const ItemType& anEntry) const {
+		Node<ItemType> *temp = headPtr;	
+	return getFrequencyOf340RecursiveNoHelper(temp, anEntry); }
+template<typename ItemType> 
+	int LinkedBag<ItemType>::getFrequencyOf340RecursiveNoHelper(Node<ItemType>* temp, const ItemType& anEntry) const {
+		if (temp == nullptr) {	
+			return 0; } 
+	
+	if(temp->getItem() == anEntry) {
+		return  1 + getFrequencyOf340RecursiveNoHelper(temp->getNext(), anEntry);
+	} else {
+		return getFrequencyOf340RecursiveNoHelper(temp->getNext(), anEntry); } } 
+
+
 // this is for B#8 which I will move to the end later
 template<typename ItemType>
  ItemType LinkedBag<ItemType>::removeRandom340() {
@@ -56,37 +118,4 @@ template<typename ItemType>
 		item = temp2->getItem();
 		remove(item);
 		return item; }
-
-// this is for B#4
-template<typename ItemType>
-	int LinkedBag<ItemType>::getCurrentSize340Recursive() const {
-		Node<ItemType> *temp = headPtr;		
-	return getCurrentSize340RecursiveHelper(temp); } 
-
-template<typename ItemType> //helper
-	int LinkedBag<ItemType>::getCurrentSize340RecursiveHelper(Node<ItemType>* temp) const {
-		int count{0};
-	
-		if (temp == nullptr) {	
-		return count;
-		} else {
-		return 1 + getCurrentSize340RecursiveHelper(temp->getNext());	} }
-
-//this is for B#6
-template<typename ItemType> 
-	int LinkedBag<ItemType>::getFrequencyOf340Recursive(const ItemType& anEntry) const {
-		Node<ItemType> *temp = headPtr;	
-	return getFrequencyOf340RecursiveHelper(temp, anEntry); }
-template<typename ItemType> 
-	int LinkedBag<ItemType>::getFrequencyOf340RecursiveHelper(Node<ItemType>* temp, const ItemType& anEntry) const {
-		if (temp == nullptr) {	
-			return 0; } 
-	
-	if(temp->getItem() == anEntry) {
-		return  1 + getFrequencyOf340RecursiveHelper(temp->getNext(), anEntry);
-	} else {
-		return getFrequencyOf340RecursiveHelper(temp->getNext(), anEntry); } } 
-
-
-
-// YOu are missing 5&7
+// the end!
